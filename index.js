@@ -28,7 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      /* 4. Stat Counter that runs EVERY time scrolled into view */
+      /* 4. Mobile navigation toggle */
+      const navMenu = document.querySelector('.nav-menu');
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+
+      if (navMenu && menuToggle) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = navMenu.classList.toggle('is-open');
+          menuToggle.classList.toggle('active', isOpen);
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('is-open');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      /* 5. Stat Counter that runs EVERY time scrolled into view */
       const statNumbers = document.querySelectorAll('.stat-item .number');
       let isCounting = false;
 
