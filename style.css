@@ -147,7 +147,7 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(80%, 1280px);
+      width: min(90%, 1400px);
       z-index: 1000;
       padding: 0px 18px;
       border-radius: 35px;
@@ -195,6 +195,13 @@
       color: #ffffff;
       font-size: 1.2rem;
       margin: 0;
+    }
+
+    .nav-logo .media-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: inherit;
     }
 
     .nav-menu {
@@ -355,7 +362,7 @@
       flex: 0 0 auto;
       min-width: 210px;
       padding: 14px 24px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(12, 12, 12, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius-pill);
       display: flex;
@@ -377,7 +384,7 @@
     .pill-card span {
       font-weight: 700;
       font-size: 1rem;
-      color: #ffffff;
+      color: #242424;
     }
 
     .pill-card:hover {
@@ -945,16 +952,19 @@
         padding: 0 1rem;
       }
 
+
       .section-padding {
         padding: 72px 0;
       }
 
       .header-nav {
         top: 12px;
-        left: 12px;
-        right: 12px;
-        width: auto;
+        left: 0;
+        right: auto;
+        width: 100%;
+        transform: none;
         padding: 12px 14px;
+        border-radius: 0;
       }
 
       .nav-wrapper {
@@ -972,7 +982,12 @@
       }
 
       .nav-actions {
+        display: flex;
         gap: 10px;
+      }
+
+      .nav-cta {
+        display: none;
       }
 
       .nav-phone {
@@ -994,7 +1009,7 @@
         right: 0;
         display: none;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 16px;
         padding: 18px 20px;
         background: rgba(15, 17, 21, 0.96);
@@ -1095,3 +1110,6 @@
         gap: 12px;
       }
     }
+
+
+

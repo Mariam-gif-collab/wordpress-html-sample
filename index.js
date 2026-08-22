@@ -94,3 +94,131 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(statsSection);
       }
     });
+
+
+    gsap.registerPlugin(ScrollTrigger);
+
+// Hero Entrance Animation
+gsap.from(".hero-content > *", {
+    y: 50,
+    opacity: 0,
+    duration: 1.2,
+    stagger: 0.2,
+    ease: "power4.out"
+});
+
+// Reveal Animations for Content Sections
+gsap.utils.toArray('.gsap-reveal').forEach((element) => {
+    gsap.from(element, {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: element,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+        }
+    });
+});
+
+// Re-triggerable Counter Animations on Scroll
+const counters = document.querySelectorAll('.counter');
+counters.forEach((counter) => {
+    const target = +counter.getAttribute('data-target');
+
+    ScrollTrigger.create({
+        trigger: counter,
+        start: "top 90%",
+        onEnter: () => animateCounter(counter, target),
+        onEnterBack: () => animateCounter(counter, target)
+    });
+});
+
+function animateCounter(counter, target) {
+    gsap.fromTo(counter, 
+        { innerText: 0 },
+        {
+            innerText: target,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: "power2.out"
+        }
+    );
+}
+
+// Auto-playing Timeline Slider (2 Cards Visible)
+const sliderTrack = document.getElementById('sliderTrack');
+const prevBtn = document.getElementById('slidePrev');
+const nextBtn = document.getElementById('slideNext');
+
+if (sliderTrack && prevBtn && nextBtn) {
+    let currentIndex = 0;
+    const cards = sliderTrack.querySelectorAll('.timeline-card');
+    
+    function getSlideStep() {
+        const card = cards[0];
+        const gap = 24; // Must match CSS gap
+        return card ? card.offsetWidth + gap : 0;
+    }
+
+    function getMaxIndex() {
+        const visibleCards = window.innerWidth <= 768 ? 1 : 2;
+        return Math.max(0, cards.length - visibleCards);
+    }
+
+    function updateSliderPosition() {
+        const step = getSlideStep();
+        sliderTrack.style.transform = `translateX(-${currentIndex * step}px)`;
+    }
+
+    function slideNext() {
+        const maxIndex = getMaxIndex();
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Loop back to start
+        }
+        updateSliderPosition();
+    }
+
+    function slidePrev() {
+        const maxIndex = getMaxIndex();
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = maxIndex; // Loop to end
+        }
+        updateSliderPosition();
+    }
+
+    nextBtn.addEventListener('click', () => {
+        slideNext();
+        resetAutoplay();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        slidePrev();
+        resetAutoplay();
+    });
+
+    // Auto-scroll loop
+    let autoplayInterval = setInterval(slideNext, 3500);
+
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        autoplayInterval = setInterval(slideNext, 3500);
+    }
+
+    // Pause on mouse hover
+    // sliderTrack.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+    // sliderTrack.addEventListener('mouseleave', () => resetAutoplay());
+
+    // Recalculate on screen resize
+    window.addEventListener('resize', () => {
+        if (currentIndex > getMaxIndex()) {
+            currentIndex = getMaxIndex();
+        }
+        updateSliderPosition();
+    });
+}
