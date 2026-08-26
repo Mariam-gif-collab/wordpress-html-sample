@@ -49,6 +49,12 @@ body{
   padding: 120px 0px;
 }
 
+.contact-hero + .contact_us {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+}
+
 .contact_inner {
   background-color: #fff;
   position: relative;

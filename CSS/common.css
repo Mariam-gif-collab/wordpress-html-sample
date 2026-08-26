@@ -424,3 +424,29 @@
         display: flex;
       }
     }
+    .whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 25px;
+  right: 25px;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Hover Effect */
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* Icon Sizing */
+.whatsapp-icon {
+  width: 65px;
+  height: 65px;
+}

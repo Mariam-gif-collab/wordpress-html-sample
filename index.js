@@ -93,6 +93,53 @@ document.addEventListener('DOMContentLoaded', () => {
       if (statsSection) {
         observer.observe(statsSection);
       }
+
+      /* 6. Full-width hero image slider */
+      const heroSlider = document.getElementById('heroSlider');
+
+      if (heroSlider) {
+        const track = heroSlider.querySelector('.hero-slider-track');
+        const slides = heroSlider.querySelectorAll('.hero-slide');
+        const dots = heroSlider.querySelectorAll('.hero-slider-dot');
+        const previousButton = heroSlider.querySelector('.hero-slider-prev');
+        const nextButton = heroSlider.querySelector('.hero-slider-next');
+        let currentSlide = 0;
+        let autoplay;
+
+        const showSlide = (slideIndex) => {
+          currentSlide = (slideIndex + slides.length) % slides.length;
+          track.style.transform = `translateX(-${currentSlide * 100}%)`;
+          slides.forEach((slide, index) => slide.classList.toggle('is-active', index === currentSlide));
+          dots.forEach((dot, index) => {
+            const isSelected = index === currentSlide;
+            dot.classList.toggle('is-active', isSelected);
+            dot.setAttribute('aria-selected', String(isSelected));
+          });
+        };
+
+        const startAutoplay = () => {
+          clearInterval(autoplay);
+          autoplay = setInterval(() => showSlide(currentSlide + 1), 5000);
+        };
+
+        previousButton.addEventListener('click', () => {
+          showSlide(currentSlide - 1);
+          startAutoplay();
+        });
+        nextButton.addEventListener('click', () => {
+          showSlide(currentSlide + 1);
+          startAutoplay();
+        });
+        dots.forEach((dot, index) => dot.addEventListener('click', () => {
+          showSlide(index);
+          startAutoplay();
+        }));
+        heroSlider.addEventListener('mouseenter', () => clearInterval(autoplay));
+        heroSlider.addEventListener('mouseleave', startAutoplay);
+        heroSlider.addEventListener('focusin', () => clearInterval(autoplay));
+        heroSlider.addEventListener('focusout', startAutoplay);
+        startAutoplay();
+      }
     });
 
 
