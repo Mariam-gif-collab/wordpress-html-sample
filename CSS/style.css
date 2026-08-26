@@ -1162,6 +1162,111 @@
       }
 
       .hero-section {
+        min-height: 620px;
+        padding: 140px 16px 56px;
+      }
+
+      .brand-header-title h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+        letter-spacing: -0.8px;
+      }
+
+      .brand-header-title p {
+        font-size: 0.68rem;
+        letter-spacing: 1.4px;
+      }
+
+      .hero-slider-control {
+        width: 38px;
+        height: 38px;
+      }
+
+      .hero-slider-prev { left: 12px; }
+      .hero-slider-next { right: 12px; }
+
+      .pill-nav-container {
+        gap: 12px;
+        padding: 14px 12px;
+      }
+
+      .pill-card {
+        min-width: 170px;
+        padding: 10px 14px;
+        gap: 10px;
+      }
+
+      .pill-card .pill-thumb {
+        width: 34px;
+        height: 34px;
+      }
+
+      .pill-card span {
+        font-size: 0.82rem;
+      }
+
+      .about-stats-grid,
+      .about-right-grid,
+      .stats-container,
+      .projects-grid,
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stats-grid {
+        gap: 36px;
+      }
+
+      .about-left h2,
+      .projects-header h2,
+      .values-intro h2 {
+        font-size: clamp(2rem, 9vw, 2.7rem);
+      }
+
+      .about-right-grid {
+        gap: 24px;
+        margin-bottom: 36px;
+      }
+
+      .stats-container {
+        gap: 28px;
+        padding-top: 28px;
+      }
+
+      .stat-item .number {
+        font-size: 3rem;
+      }
+
+      .projects-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .project-media {
+        height: 240px;
+      }
+
+      .project-info {
+        padding: 18px;
+      }
+
+      .project-info h3 {
+        font-size: 1.1rem;
+      }
+
+      .bento-card {
+        min-height: 210px;
+        padding: 28px;
+      }
+
+      .brands-section,
+      .founder-section {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 56px 1.25rem;
+      }
+
+      .hero-section {
         min-height: 560px;
         align-items: center;
         padding-top: 140px;

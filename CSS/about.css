@@ -1,36 +1,5 @@
 @import url('common.css');
 
-/* :root {
-  --primary-dark: #0f1115;
-  --accent-gold: rgb(176, 116, 16);    
-  --accent-gold-glow: rgba(176, 116, 16, 0.35);
-  --text-gray: rgb(100, 100, 100);     
-  --text-dark: #121417;
-  --bg-light: #f8f9fa;
-  --bg-card: #ffffff;
-  --border-light: #e2e8f0;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-pill: 999px;
-  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.05);
-  --shadow-hover: 0 20px 40px rgba(176, 116, 16, 0.15);
-} */
-
-/* Base resets */
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-body {
-  background-color: var(--bg-light);
-  color: var(--text-dark);
-  overflow-x: hidden;
-} */
 
 /* Helpers */
 .text-gold { color: var(--accent-gold); }
@@ -161,8 +130,8 @@ body {
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent, var(--primary-dark));
-  opacity: 0.9;
+  background: linear-gradient(to bottom, transparent, var(--bg-card));
+  opacity: 0.3;
   z-index: 10;
 }
 
@@ -213,7 +182,7 @@ body {
 }
 
 .hero-subtitle {
-  color: var(--text-gray);
+  color: var(--accent-gold);
   max-width: 600px;
   margin: 0 auto 32px;
   font-size: 1.1rem;
@@ -465,6 +434,43 @@ body {
 @media (max-width: 768px) {
   .timeline-card {
     flex: 0 0 100%;
+  }
+
+  .section-container {
+    padding: 56px 16px;
+  }
+
+  .hero-section {
+    min-height: 560px;
+    padding: 140px 16px 56px;
+  }
+
+  .hero-title,
+  .section-heading {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .timeline-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .slider-view-wrapper {
+    padding: 0 16px;
+  }
+
+  .timeline-card {
+    padding: 20px;
+    min-height: 280px;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
       /* 1. Initialize AOS with repeat animations on scroll down */
-      AOS.init({
-        duration: 800,
-        easing: 'ease-out-quad',
-        once: false, // Re-triggers animation whenever scrolled back into view
-        mirror: true, // Mirrors out animation when scrolling past
-        offset: 100
-      });
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-out-quad',
+          once: false, // Re-triggers animation whenever scrolled back into view
+          mirror: true, // Mirrors out animation when scrolling past
+          offset: 100
+        });
+      }
 
       /* 2. GSAP Hero Section Intro */
       gsap.from(".gsap-hero", {
