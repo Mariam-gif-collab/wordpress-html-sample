@@ -33,6 +33,38 @@ document.addEventListener('DOMContentLoaded', () => {
       /* 4. Mobile navigation toggle */
       const navMenu = document.querySelector('.nav-menu');
       const menuToggle = document.querySelector('.mobile-menu-toggle');
+      const navDropdowns = document.querySelectorAll('.nav-dropdown');
+
+      navDropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+
+        if (!toggle || !menu) return;
+
+        toggle.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          const isOpen = dropdown.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', String(isOpen));
+
+          navDropdowns.forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('is-open');
+              const otherToggle = otherDropdown.querySelector('.dropdown-toggle');
+              if (otherToggle) {
+                otherToggle.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
 
       if (navMenu && menuToggle) {
         menuToggle.addEventListener('click', () => {
@@ -141,6 +173,67 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSlider.addEventListener('focusin', () => clearInterval(autoplay));
         heroSlider.addEventListener('focusout', startAutoplay);
         startAutoplay();
+      }
+
+      /* 7. Testimonial slider */
+      const testimonialSlider = document.querySelector('.testimonial-slider');
+
+      if (testimonialSlider) {
+        const track = testimonialSlider.querySelector('.testimonial-track');
+        const cards = testimonialSlider.querySelectorAll('.testimonial-card');
+        const dots = testimonialSlider.querySelectorAll('.testimonial-dot');
+        const prevButton = testimonialSlider.querySelector('.testimonial-prev');
+        const nextButton = testimonialSlider.querySelector('.testimonial-next');
+        const cardsPerView = 2;
+        const maxIndex = Math.max(0, cards.length - cardsPerView);
+        let currentTestimonial = 0;
+        let testimonialAutoplay;
+
+        const showTestimonial = (index) => {
+          const safeIndex = Math.min(Math.max(index, 0), maxIndex);
+          currentTestimonial = safeIndex;
+
+          const cardWidth = cards[0].getBoundingClientRect().width + 20;
+          track.style.transform = `translateX(-${currentTestimonial * cardWidth}px)`;
+
+          dots.forEach((dot, dotIndex) => {
+            const isSelected = dotIndex === currentTestimonial;
+            dot.classList.toggle('is-active', isSelected);
+            dot.setAttribute('aria-selected', String(isSelected));
+          });
+        };
+
+        const startTestimonialAutoplay = () => {
+          clearInterval(testimonialAutoplay);
+          testimonialAutoplay = setInterval(() => {
+            const nextIndex = currentTestimonial >= maxIndex ? 0 : currentTestimonial + 1;
+            showTestimonial(nextIndex);
+          }, 5500);
+        };
+
+        prevButton.addEventListener('click', () => {
+          showTestimonial(currentTestimonial - 1);
+          startTestimonialAutoplay();
+        });
+
+        nextButton.addEventListener('click', () => {
+          showTestimonial(currentTestimonial + 1);
+          startTestimonialAutoplay();
+        });
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            showTestimonial(index);
+            startTestimonialAutoplay();
+          });
+        });
+
+        testimonialSlider.addEventListener('mouseenter', () => clearInterval(testimonialAutoplay));
+        testimonialSlider.addEventListener('mouseleave', startTestimonialAutoplay);
+        testimonialSlider.addEventListener('focusin', () => clearInterval(testimonialAutoplay));
+        testimonialSlider.addEventListener('focusout', startTestimonialAutoplay);
+        showTestimonial(0);
+        startTestimonialAutoplay();
       }
     });
 

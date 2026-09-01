@@ -23,7 +23,16 @@
 
         <nav class="nav-menu" id="site-navigation">
           <a href="/index.html">Home</a>
-          <a href="/">Projects</a>
+          <div class="nav-dropdown">
+            <a href="#projects" class="dropdown-toggle" aria-expanded="false">
+              Projects
+              <i class="fa-solid fa-chevron-down"></i>
+            </a>
+            <div class="dropdown-menu" aria-label="Projects submenu">
+              <a href="#projects">All Projects</a>
+              <a href="./upcomingProjects.html">Upcoming Projects</a>
+            </div>
+          </div>
           <a href="../HTML/contact.html">Contact Us</a>
           <a href="../HTML/about.html">About Us</a>
         </nav>
@@ -73,19 +82,54 @@
             </div>
         </div>
     </section>
+
+    <!-- <section class="section-padding" id="upcoming-projects">
+      <div class="container">
+        <div class="projects-header" data-aos="fade-up">
+          <div>
+            <h2>Upcoming Projects</h2>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card" data-aos="fade-up">
+            <div class="media-placeholder project-media">
+              <span class="status-tag">Launching Soon</span>
+              <i class="fa-regular fa-image"></i>
+              <img src="../ASSETS/office-5.jpeg" alt="Upcoming project preview">
+            </div>
+            <div class="project-info">
+              <h3>Urban Crest Residences</h3>
+            </div>
+          </div>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="media-placeholder project-media">
+              <span class="status-tag">Launching Soon</span>
+              <i class="fa-regular fa-image"></i>
+              <img src="../ASSETS/office-2.jpeg" alt="Upcoming project preview">
+            </div>
+            <div class="project-info">
+              <h3>Garden Avenue Heights</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
       <section class="section-padding" id="projects">
     <div class="container">
       <div class="projects-header" data-aos="fade-up">
         <div>
           <h2>Explore our recent projects</h2>
         </div>
-        <button class="btn-action">
-          View All Projects
+        <a class="btn-action" href="./upcomingProjects.html">
+          View Upcoming Projects
           <i class="fa-solid fa-arrow-right"></i>
-        </button>
+        </a>
       </div>
 
-      <div class="projects-grid">
+      <!-- <div class="projects-grid">
         <div class="project-card" data-aos="fade-up">
           <div class="media-placeholder project-media">
             <span class="status-tag">Under Construction</span>
@@ -129,7 +173,7 @@
           <div class="project-info">
             <h3>DHA-Bahria Lahore</h3>
           </div>
-        </div>
+        </div> -->
 
         <div class="project-card" data-aos="fade-up" data-aos-delay="200">
           <div class="media-placeholder project-media">
@@ -192,7 +236,7 @@
           <ul>
             <li><a href="../HTML/about.html">About Us</a></li>
             <li><a href="../HTML/project.html">Projects</a></li>
-            <li><a href="#">Our COO</a></li>
+            <li><a href="#">Our CEO</a></li>
           </ul>
         </div>
 
